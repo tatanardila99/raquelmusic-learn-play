@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Users, Award, TrendingUp, Music, Guitar, Lightbulb, Mic } from "lucide-react";
+import { ArrowRight, Play, Users, Award, TrendingUp, Music, Guitar, Lightbulb, Mic, Music2, Trophy } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
@@ -69,48 +69,52 @@ const Index = () => {
     TrendingUp: TrendingUp,
     Lightbulb: Lightbulb,
     Mic: Mic,
+    Music2: Music2,
+    Trophy: Trophy,
   };
 
-  const roadmapSteps: { step: number; title: string; description: string; icon: keyof typeof iconMap; cta: string; link: string; }[] = [
+  const subscriptionPlans = [
     {
-      step: 1,
-      title: "Fundamentos y Teoría Musical",
-      description: "Comienza con los conceptos básicos. Aprende a leer partituras, entiende el ritmo y la melodía.",
-      icon: "Music",
-      cta: "Explorar Teoría",
-      link: "/cursos?category=Teoría%20Musical",
+      icon: "Music2",
+      title: "Plan Mensual",
+      description: "Acceso a todos los cursos de teoría y nivel principiante. Ideal para empezar tu camino musical.",
     },
     {
-      step: 2,
-      title: "Elige tu Instrumento",
-      description: "Explora nuestros cursos de iniciación para piano, guitarra, violín y más. Encuentra tu pasión.",
       icon: "Guitar",
-      cta: "Ver Instrumentos",
-      link: "/cursos",
+      title: "Plan Anual (Más Popular)",
+      description: "Acceso ilimitado a todo el catálogo, incluyendo cursos de producción y tecnología musical. Descarga de materiales.",
     },
     {
-      step: 3,
-      title: "Técnica y Práctica",
-      description: "Desarrolla tus habilidades con ejercicios prácticos y lecciones de técnica avanzada.",
-      icon: "TrendingUp",
-      cta: "Mejorar Técnica",
-      link: "/cursos",
+      icon: "Trophy",
+      title: "Acceso Vitalicio",
+      description: "Un solo pago. Acceso para siempre a todos los cursos actuales, futuras actualizaciones y sesiones de preguntas y respuestas.",
+    },
+  ];
+
+  const learningPath = [
+    {
+      label: "Módulo 1",
+      title: "Fundamentos de Teoría Musical",
+      subtitle: "Conceptos Esenciales",
+      description: "Aprende notas, escalas, acordes y ritmo. La base de todo músico.",
     },
     {
-      step: 4,
-      title: "Composición y Creación",
-      description: "Aprende a escribir tu propia música. Explora la armonía, la composición y el arreglo.",
-      icon: "Lightbulb",
-      cta: "Empezar a Componer",
-      link: "/cursos?category=Producción",
+      label: "Módulo 2",
+      title: "Dominio de Instrumento",
+      subtitle: "Técnica y Práctica",
+      description: "Cursos enfocados en la técnica, lectura de partituras y primeras canciones.",
     },
     {
-      step: 5,
-      title: "Producción y Grabación",
-      description: "Lleva tus creaciones al siguiente nivel. Aprende a grabar, mezclar y masterizar tus canciones.",
-      icon: "Mic",
-      cta: "Producir Ahora",
-      link: "/cursos?category=Producción",
+      label: "Módulo 3",
+      title: "Producción y Tecnología Musical",
+      subtitle: "Manejo de Software y Secuencias",
+      description: "Domina el software de producción, mezcla y el manejo de secuencias para tocar en vivo.",
+    },
+    {
+      label: "Módulo 4",
+      title: "Composición y Arreglos",
+      subtitle: "Crea tu Propia Música",
+      description: "Aprende a estructurar canciones, crear melodías y hacer arreglos completos.",
     },
   ];
 
@@ -257,41 +261,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Roadmap Section */}
+      {/* Subscription Plans Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl md:text-5xl mb-4">Tu Camino de Aprendizaje</h2>
+            <h2 className="font-display text-4xl md:text-5xl mb-4">Planes de Suscripción</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Desde los fundamentos hasta la producción profesional, te guiamos en cada paso de tu viaje musical.
+              Acceso ilimitado a todos nuestros cursos. Elige el plan que se ajusta a tus metas.
             </p>
           </div>
-          <div className="relative">
-            {/* The timeline line (visible on desktop) */}
-            <div className="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-primary/20" aria-hidden="true"></div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8">
-              {roadmapSteps.map((step, index) => (
-                <div key={index} className="relative text-center">
-                  {/* The icon */}
-                  <div className="relative">
-                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30 mx-auto z-10 relative">
-                      {React.createElement(iconMap[step.icon], { className: "w-8 h-8" })}
-                    </div>
-                  </div>
-                  
-                  {/* The content */}
-                  <h3 className="text-xl font-semibold mt-6 mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4 px-2">{step.description}</p>
-                  <Link to={step.link}>
-                    <Button variant="link" className="group">
-                      {step.cta}
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Button>
-                  </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {subscriptionPlans.map((plan, index) => (
+              <div key={index} className="bg-card p-8 rounded-xl border border-border shadow-sm hover:shadow-lg transition-shadow duration-300 text-center">
+                <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                  {React.createElement(iconMap[plan.icon], { className: "w-8 h-8" })}
                 </div>
-              ))}
-            </div>
+                <h3 className="text-white text-2xl font-bold mb-3">{plan.title}</h3>
+                <p className="text-muted-foreground mb-6">{plan.description}</p>
+                <Button>Seleccionar Plan</Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recommended Learning Path Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-4xl md:text-5xl mb-4">Ruta de Aprendizaje Recomendada</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Sigue este camino estructurado para dominar la música, desde los fundamentos hasta la producción avanzada.
+            </p>
+          </div>
+          <div className="relative max-w-2xl mx-auto">
+            <div className="absolute left-8 top-0 h-full w-0.5 bg-primary/20" aria-hidden="true"></div>
+            {learningPath.map((item, index) => (
+              <div key={index} className="relative pl-24 mb-12">
+                <div className="absolute left-0 top-0">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30">
+                    <span className="text-xl font-bold">{index + 1}</span>
+                  </div>
+                </div>
+                <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+                  <p className="text-sm text-primary font-semibold mb-1">{item.label}</p>
+                  <h3 className="text-white text-2xl font-bold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{item.subtitle}</p>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
