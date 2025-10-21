@@ -24,7 +24,7 @@ const CourseCard = ({
   category,
 }: CourseCardProps) => {
   return (
-    <Card className="group overflow-hidden rounded-lg border-border hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-2 cursor-pointer flex flex-col h-full">
+    <Card className="group overflow-hidden  border-border hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-2 cursor-pointer flex flex-col h-full">
       <div className="relative overflow-hidden aspect-video">
         <img
           src={image}
@@ -37,9 +37,9 @@ const CourseCard = ({
         </Badge>
       </div>
 
-      <CardContent className="p-5 flex flex-col flex-grow">
+      <CardContent className="p-4 flex flex-col flex-grow">
         <div className="flex-grow space-y-3">
-          <h3 className="font-bold text-xl line-clamp-2 group-hover:text-primary transition-colors duration-300">
+          <h3 className="font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors duration-300">
             {title}
           </h3>
 
@@ -60,13 +60,13 @@ const CourseCard = ({
           </div>
         </div>
 
-        <div className="pt-4 mt-4 flex items-center justify-between border-t border-border">
+        <div className="pt-3 mt-3 flex items-center justify-between border-t border-border">
           {isFree ? (
-            <span className="text-2xl font-bold text-primary">Gratis</span>
+            <span className="text-xl font-bold text-primary">Gratis</span>
           ) : (
-            <span className="text-2xl font-bold text-primary">{price}</span>
+            <span className="text-lg font-semibold text-primary">{price}</span>
           )}
-          <button className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:bg-primary/90 transition-colors">
+          <button className="bg-primary text-primary-foreground px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary/90 transition-colors">
             Ver Curso
           </button>
         </div>

@@ -37,7 +37,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-smooth relative ${
+                className={`text-sm font-medium transition-smooth relative font-semibold ${
                   isActive(link.path)
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -45,7 +45,7 @@ const Navbar = () => {
               >
                 {link.name}
                 {isActive(link.path) && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  <span className=" absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
                 )}
               </Link>
             ))}
@@ -53,7 +53,7 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button className="gradient-hero shadow-glow hover:scale-105 transition-smooth">
+            <Button className=" font-semibold gradient-hero shadow-glow hover:scale-105 transition-smooth">
               Empieza Ahora
             </Button>
           </div>

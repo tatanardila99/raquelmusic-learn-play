@@ -37,8 +37,8 @@ const Index = () => {
 
   const stats = [
     { icon: Users, value: "10,000+", label: "Estudiantes Activos" },
-    { icon: Play, value: "150+", label: "Cursos Disponibles" },
-    { icon: Award, value: "50+", label: "Instructores Expertos" },
+    { icon: Play, value: "50+", label: "Cursos Disponibles" },
+    { icon: Award, value: "20+", label: "Instructores Expertos" },
     { icon: TrendingUp, value: "95%", label: "Tasa de Satisfacción" },
   ];
 
@@ -126,7 +126,7 @@ const Index = () => {
             alt="Músico en estudio"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 " />
         </div>
 
         <div className="container mx-auto px-4 z-10">
@@ -134,7 +134,7 @@ const Index = () => {
             <h1 className="text-white mb-6" style={{ textShadow: '0 2px 4px rgba(254, 254, 254, 0.5)' }}>
               Aprende Música a Tu Ritmo
             </h1>
-            <p className="text-l md:text-xl text-muted-foreground mb-8 max-w-2xl" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)' }}>
+            <p className="text-l md:text-l text-muted-foreground mb-8 max-w-2xl" style={{ textShadow: '0 2px 4px rgba(127, 108, 108, 0.5)' }}>
               Desde la teoría clásica hasta la tecnología moderna. Cursos profesionales
               en video que se adaptan a tu nivel y objetivos.
             </p>
@@ -151,7 +151,7 @@ const Index = () => {
                 variant="outline"
                 className="text-lg border-2 hover:bg-muted"
               >
-                <Play className="mr-2 w-5 h-5" />
+                <Play className="" />
                 Ver Demo
               </Button>
             </div>
@@ -181,10 +181,10 @@ const Index = () => {
       </section>
 
       {/* Featured Courses */}
-      <section className="py-10">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="font-display mb-4">Cursos Destacados</h2>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="font-display text-4xl md:text-5xl mb-4">Cursos Destacados</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explora nuestros cursos más populares y comienza tu viaje musical hoy
             </p>
@@ -260,61 +260,35 @@ const Index = () => {
       {/* Roadmap Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="font-display mb-4">Tu Camino de Aprendizaje Musical</h2>
+          <div className="text-center mb-16">
+            <h2 className="font-display text-4xl md:text-5xl mb-4">Tu Camino de Aprendizaje</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Desde los fundamentos hasta la producción profesional, te guiamos en cada paso de tu viaje musical.
             </p>
           </div>
-
-          {/* Desktop Timeline */}
-          <div className="hidden md:block">
-            <div className="relative">
-              <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-primary/20 -translate-y-1/2" aria-hidden="true"></div>
-              <div className="relative flex justify-between">
-                {roadmapSteps.map((step, index) => (
-                  <div key={index} className="flex flex-col items-center text-center w-1/5">
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30">
-                        {React.createElement(iconMap[step.icon], { className: "w-8 h-8" })}
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold mt-4 mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-4 px-2">{step.description}</p>
-                    <Link to={step.link}>
-                      <Button variant="link" className="group">
-                        {step.cta}
-                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Button>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Timeline */}
-          <div className="md:hidden">
-            <div className="relative">
-              <div className="absolute left-8 top-0 h-full w-0.5 bg-primary/20" aria-hidden="true"></div>
+          <div className="relative">
+            {/* The timeline line (visible on desktop) */}
+            <div className="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-primary/20" aria-hidden="true"></div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8">
               {roadmapSteps.map((step, index) => (
-                <div key={index} className="relative pl-16 mb-12">
-                  <div className="absolute left-0 top-0">
-                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30">
+                <div key={index} className="relative text-center">
+                  {/* The icon */}
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30 mx-auto z-10 relative">
                       {React.createElement(iconMap[step.icon], { className: "w-8 h-8" })}
                     </div>
                   </div>
-                  <div className="bg-card p-6 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
-                    <p className="text-sm text-primary font-semibold mb-1">Paso {step.step}</p>
-                    <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                    <p className="text-muted-foreground mb-4">{step.description}</p>
-                    <Link to={step.link}>
-                      <Button variant="outline" className="group">
-                        {step.cta}
-                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Button>
-                    </Link>
-                  </div>
+                  
+                  {/* The content */}
+                  <h3 className="text-xl font-semibold mt-6 mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4 px-2">{step.description}</p>
+                  <Link to={step.link}>
+                    <Button variant="link" className="group">
+                      {step.cta}
+                      <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
