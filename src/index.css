@@ -47,7 +47,7 @@ All colors MUST be HSL.
     --shadow-sm: 0 2px 8px hsl(220 15% 12% / 0.05);
     --shadow-md: 0 4px 16px hsl(220 15% 12% / 0.08);
     --shadow-lg: 0 8px 32px hsl(220 15% 12% / 0.12);
-    --shadow-glow: 0 0 40px hsl(265 85% 58% / 0.3);
+    --shadow-glow: 0 0 40px hsla(265, 41%, 52%, 0.3);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -139,5 +139,12 @@ All colors MUST be HSL.
 
   .transition-smooth {
     transition: var(--transition-smooth);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.5);
   }
 }

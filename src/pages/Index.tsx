@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Users, Award, TrendingUp } from "lucide-react";
+import { ArrowRight, Play, Users, Award, TrendingUp, Music, Guitar, Lightbulb, Mic } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
@@ -8,6 +8,7 @@ import heroImage from "@/assets/hero-music.jpg";
 import coursePiano from "@/assets/course-piano.jpg";
 import courseGuitar from "@/assets/course-guitar.jpg";
 import courseProduction from "@/assets/course-production.jpg";
+import React from "react";
 
 const Index = () => {
   const featuredCourses = [
@@ -46,16 +47,70 @@ const Index = () => {
       name: "Laura Martínez",
       role: "Estudiante de Piano",
       text: "RaquelMusic transformó mi forma de aprender música. Los cursos son claros, profesionales y puedo avanzar a mi propio ritmo.",
+      image: "https://randomuser.me/api/portraits/women/68.jpg",
     },
     {
       name: "Diego Silva",
       role: "Productor Musical",
       text: "La calidad de los cursos de producción es excepcional. Aprendí técnicas profesionales que uso en mi trabajo diario.",
+      image: "https://randomuser.me/api/portraits/men/43.jpg",
     },
     {
       name: "Carmen López",
       role: "Guitarrista",
       text: "Después de años intentando aprender por mi cuenta, finalmente encontré una plataforma que realmente funciona. ¡Altamente recomendado!",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+    },
+  ];
+
+  const iconMap = {
+    Music: Music,
+    Guitar: Guitar,
+    TrendingUp: TrendingUp,
+    Lightbulb: Lightbulb,
+    Mic: Mic,
+  };
+
+  const roadmapSteps: { step: number; title: string; description: string; icon: keyof typeof iconMap; cta: string; link: string; }[] = [
+    {
+      step: 1,
+      title: "Fundamentos y Teoría Musical",
+      description: "Comienza con los conceptos básicos. Aprende a leer partituras, entiende el ritmo y la melodía.",
+      icon: "Music",
+      cta: "Explorar Teoría",
+      link: "/cursos?category=Teoría%20Musical",
+    },
+    {
+      step: 2,
+      title: "Elige tu Instrumento",
+      description: "Explora nuestros cursos de iniciación para piano, guitarra, violín y más. Encuentra tu pasión.",
+      icon: "Guitar",
+      cta: "Ver Instrumentos",
+      link: "/cursos",
+    },
+    {
+      step: 3,
+      title: "Técnica y Práctica",
+      description: "Desarrolla tus habilidades con ejercicios prácticos y lecciones de técnica avanzada.",
+      icon: "TrendingUp",
+      cta: "Mejorar Técnica",
+      link: "/cursos",
+    },
+    {
+      step: 4,
+      title: "Composición y Creación",
+      description: "Aprende a escribir tu propia música. Explora la armonía, la composición y el arreglo.",
+      icon: "Lightbulb",
+      cta: "Empezar a Componer",
+      link: "/cursos?category=Producción",
+    },
+    {
+      step: 5,
+      title: "Producción y Grabación",
+      description: "Lleva tus creaciones al siguiente nivel. Aprende a grabar, mezclar y masterizar tus canciones.",
+      icon: "Mic",
+      cta: "Producir Ahora",
+      link: "/cursos?category=Producción",
     },
   ];
 
@@ -71,15 +126,15 @@ const Index = () => {
             alt="Músico en estudio"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/70" />
         </div>
 
         <div className="container mx-auto px-4 z-10">
           <div className="max-w-3xl animate-fade-in-up">
-            <h1 className="font-display mb-6">
+            <h1 className="text-white mb-6" style={{ textShadow: '0 2px 4px rgba(254, 254, 254, 0.5)' }}>
               Aprende Música a Tu Ritmo
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl">
+            <p className="text-l md:text-xl text-muted-foreground mb-8 max-w-2xl" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)' }}>
               Desde la teoría clásica hasta la tecnología moderna. Cursos profesionales
               en video que se adaptan a tu nivel y objetivos.
             </p>
@@ -105,9 +160,9 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 border-y border-border bg-card/50">
+      <section className="py-10 border-border	">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -126,7 +181,7 @@ const Index = () => {
       </section>
 
       {/* Featured Courses */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-display mb-4">Cursos Destacados</h2>
@@ -163,9 +218,9 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-card/50">
+      <section className="py-20 bg-gray-200">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
+          <div className="text-center mb-12 ">
             <h2 className="font-display mb-4">Lo Que Dicen Nuestros Estudiantes</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Miles de músicos ya están aprendiendo con nosotros
@@ -176,10 +231,10 @@ const Index = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-card p-6 rounded-lg border border-border hover:shadow-lg transition-smooth animate-fade-in-up"
+                className="bg-card p-6 rounded-lg border border-border hover:shadow-lg transition-smooth animate-fade-in-up flex flex-col"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="mb-4">
+                <div className="flex-grow mb-4">
                   <div className="flex gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
                       <div key={i} className="w-5 h-5 text-secondary">★</div>
@@ -187,10 +242,13 @@ const Index = () => {
                   </div>
                   <p className="text-muted-foreground mb-4">{testimonial.text}</p>
                 </div>
-                <div>
-                  <div className="font-semibold">{testimonial.name}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonial.role}
+                <div className="flex items-center gap-4">
+                  <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
+                  <div>
+                    <div className="font-semibold">{testimonial.name}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {testimonial.role}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -199,10 +257,75 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Roadmap Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="font-display mb-4">Tu Camino de Aprendizaje Musical</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Desde los fundamentos hasta la producción profesional, te guiamos en cada paso de tu viaje musical.
+            </p>
+          </div>
+
+          {/* Desktop Timeline */}
+          <div className="hidden md:block">
+            <div className="relative">
+              <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-primary/20 -translate-y-1/2" aria-hidden="true"></div>
+              <div className="relative flex justify-between">
+                {roadmapSteps.map((step, index) => (
+                  <div key={index} className="flex flex-col items-center text-center w-1/5">
+                    <div className="relative">
+                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30">
+                        {React.createElement(iconMap[step.icon], { className: "w-8 h-8" })}
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold mt-4 mb-2">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4 px-2">{step.description}</p>
+                    <Link to={step.link}>
+                      <Button variant="link" className="group">
+                        {step.cta}
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Button>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Timeline */}
+          <div className="md:hidden">
+            <div className="relative">
+              <div className="absolute left-8 top-0 h-full w-0.5 bg-primary/20" aria-hidden="true"></div>
+              {roadmapSteps.map((step, index) => (
+                <div key={index} className="relative pl-16 mb-12">
+                  <div className="absolute left-0 top-0">
+                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/30">
+                      {React.createElement(iconMap[step.icon], { className: "w-8 h-8" })}
+                    </div>
+                  </div>
+                  <div className="bg-card p-6 rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
+                    <p className="text-sm text-primary font-semibold mb-1">Paso {step.step}</p>
+                    <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+                    <p className="text-muted-foreground mb-4">{step.description}</p>
+                    <Link to={step.link}>
+                      <Button variant="outline" className="group">
+                        {step.cta}
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 gradient-hero opacity-10" />
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container mx-auto px- text-center relative z-10">
           <div className="max-w-3xl mx-auto animate-fade-in-up">
             <h2 className="font-display mb-6">
               Comienza Tu Viaje Musical Hoy

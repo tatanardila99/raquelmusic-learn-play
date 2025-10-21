@@ -3,9 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
 import { Button } from "@/components/ui/button";
-import coursePiano from "@/assets/course-piano.jpg";
-import courseGuitar from "@/assets/course-guitar.jpg";
-import courseProduction from "@/assets/course-production.jpg";
+import { courses } from "@/lib/coursesData";
+import { SearchX } from "lucide-react";
 
 const Courses = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -17,91 +16,6 @@ const Courses = () => {
     "Guitarra",
     "Violín",
     "Producción",
-  ];
-
-  const courses = [
-    {
-      title: "Fundamentos de Piano Clásico",
-      instructor: "María González",
-      price: "$49.99",
-      image: coursePiano,
-      category: "Piano",
-      duration: "8 semanas",
-      rating: 4.9,
-    },
-    {
-      title: "Teoría Musical Completa",
-      instructor: "Pedro Sánchez",
-      price: "Gratis",
-      isFree: true,
-      image: coursePiano,
-      category: "Teoría Musical",
-      duration: "6 semanas",
-      rating: 4.7,
-    },
-    {
-      title: "Guitarra para Principiantes",
-      instructor: "Carlos Ramírez",
-      price: "$39.99",
-      image: courseGuitar,
-      category: "Guitarra",
-      duration: "10 semanas",
-      rating: 4.8,
-    },
-    {
-      title: "Producción Musical Moderna",
-      instructor: "Ana Torres",
-      price: "$59.99",
-      image: courseProduction,
-      category: "Producción",
-      duration: "12 semanas",
-      rating: 5.0,
-    },
-    {
-      title: "Técnicas Avanzadas de Piano",
-      instructor: "María González",
-      price: "$69.99",
-      image: coursePiano,
-      category: "Piano",
-      duration: "10 semanas",
-      rating: 4.9,
-    },
-    {
-      title: "Manejo de Secuencias y Monitoreo en Vivo",
-      instructor: "Roberto Díaz",
-      price: "$79.99",
-      image: courseProduction,
-      category: "Producción",
-      duration: "8 semanas",
-      rating: 4.8,
-    },
-    {
-      title: "Guitarra Avanzada: Técnicas de Fingerpicking",
-      instructor: "Carlos Ramírez",
-      price: "$54.99",
-      image: courseGuitar,
-      category: "Guitarra",
-      duration: "9 semanas",
-      rating: 4.9,
-    },
-    {
-      title: "Introducción al Violín",
-      instructor: "Elena Martín",
-      price: "$44.99",
-      image: coursePiano,
-      category: "Violín",
-      duration: "8 semanas",
-      rating: 4.7,
-    },
-    {
-      title: "Armonía y Composición",
-      instructor: "Pedro Sánchez",
-      price: "$49.99",
-      image: coursePiano,
-      category: "Teoría Musical",
-      duration: "10 semanas",
-      rating: 4.8,
-    },
   ];
 
   const filteredCourses =
@@ -129,13 +43,13 @@ const Courses = () => {
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
+                variant="outline"
                 onClick={() => setSelectedCategory(category)}
-                className={
+                className={`transition-all duration-300 ${
                   selectedCategory === category
-                    ? "gradient-hero shadow-glow"
-                    : "border-2"
-                }
+                    ? "bg-primary text-primary-foreground border-primary shadow-lg"
+                    : "hover:bg-muted/50 hover:border-primary"
+                }`}
               >
                 {category}
               </Button>
@@ -143,7 +57,7 @@ const Courses = () => {
           </div>
 
           {/* Course Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {filteredCourses.map((course, index) => (
               <div
                 key={index}
@@ -156,9 +70,11 @@ const Courses = () => {
           </div>
 
           {filteredCourses.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-xl text-muted-foreground">
-                No se encontraron cursos en esta categoría
+            <div className="text-center py-20 flex flex-col items-center gap-4">
+              <SearchX className="w-16 h-16 text-muted-foreground" />
+              <h3 className="text-2xl font-semibold">No se encontraron cursos</h3>
+              <p className="text-lg text-muted-foreground max-w-md mx-auto">
+                Prueba a seleccionar otra categoría o vuelve a intentarlo más tarde.
               </p>
             </div>
           )}

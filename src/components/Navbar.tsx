@@ -26,7 +26,7 @@ const Navbar = () => {
             <div className="w-10 h-10 rounded-lg bg-gradient-hero flex items-center justify-center shadow-glow transition-smooth group-hover:scale-110">
               <Music className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl md:text-2xl font-display font-bold">
+            <span className=" text-white text-xl md:text-2xl font-display font-bold">
               RaquelMusic
             </span>
           </Link>
