@@ -11,6 +11,7 @@ import courseGuitar from '../assets/course-guitar.jpg';
 import courseProduction from '../assets/course-production.jpg';
 import courseTheory from '../assets/course-guitar.jpg';
 import courseViolin from '../assets/course-guitar.jpg';
+import Footer from '@/components/Footer';
 
 // --- Datos de Cursos (Ejemplo) ---
 // Reemplaza esto con la importación de tus datos reales
@@ -64,18 +65,6 @@ const Navbar = () => {
     </header>);
 };
 
-const Footer = () => (
-    <footer className="bg-gray-900 border-t border-gray-800 py-12">
-        <div className="container mx-auto px-4 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} RaquelMusic. Todos los derechos reservados.</p>
-            <div className="flex justify-center gap-6 mt-4">
-                <a href="#" className="hover:text-white transition-colors">Facebook</a>
-                <a href="#" className="hover:text-white transition-colors">Instagram</a>
-                <a href="#" className="hover:text-white transition-colors">YouTube</a>
-            </div>
-        </div>
-    </footer>
-);
 
 const CourseCard = ({ title, instructor, price, image, category }) => (
     <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 group transition-all duration-300 hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2">
@@ -181,7 +170,7 @@ export default function Courses() {
           )}
         </div>
       </main>
-      <Footer />
+      <Footer/>
     </div>
   );
 };
