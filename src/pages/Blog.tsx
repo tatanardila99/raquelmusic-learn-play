@@ -8,12 +8,12 @@ import Footer from '@/components/Footer';
 // --- Asset Imports ---
 // Reemplaza estas URLs con las imágenes de tu blog.
 const featuredImage = "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80";
-const articleImg1 = "https://images.unsplash.com/photo-1499415479124-a3a412847a8e?auto=format&fit=crop&w=600&q=80";
+const articleImg1 = "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80";
 const articleImg2 = "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80";
 const articleImg3 = "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=600&q=80";
 const articleImg4 = "https://images.unsplash.com/photo-1462965326201-d02e4f455804?auto=format&fit=crop&w=600&q=80";
 const articleImg5 = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80";
-const articleImg6 = "https://images.unsplash.com/photo-1611162616475-46b6352b1260?auto=format&fit=crop&w=600&q=80";
+const articleImg6 = "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80";
 
 
 // --- Componentes Internos Reutilizados ---

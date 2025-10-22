@@ -9,6 +9,7 @@ import { Music, Target, Heart, Award, Users, PlayCircle, BookOpen, Smile, ArrowR
 import aboutHeroImage from '../assets/hero-music.jpg';
 import instructor1 from '../assets/instructor-1.jpg';
 import instructor2 from '../assets/instructor-2.jpg';
+import Footer from '@/components/Footer';
 
 // --- Componentes Internos Reutilizados ---
 
@@ -44,19 +45,6 @@ const Navbar = () => {
         </div>
     </header>);
 };
-
-const Footer = () => (
-    <footer className="bg-gray-900 border-t border-gray-800 py-12">
-        <div className="container mx-auto px-4 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} RaquelMusic. Todos los derechos reservados.</p>
-            <div className="flex justify-center gap-6 mt-4">
-                <a href="#" className="hover:text-white transition-colors">Facebook</a>
-                <a href="#" className="hover:text-white transition-colors">Instagram</a>
-                <a href="#" className="hover:text-white transition-colors">YouTube</a>
-            </div>
-        </div>
-    </footer>
-);
 
 
 // --- Página Sobre Nosotros ---

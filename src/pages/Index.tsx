@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
+// Importa Link para la navegación
 import { Link } from 'react-router-dom';
 
 // Iconos de lucide-react
-import { 
-  Music, Crown, Star, Check, ArrowRight, Play, Users, Award, 
+import {
+  Music, Crown, Star, Check, ArrowRight, Play, Users, Award,
   TrendingUp, BookOpen, MicVocal, SlidersHorizontal, Lightbulb, Quote,
   FileText, Download, X, Mail, Instagram, Youtube, Facebook
 } from 'lucide-react';
 
+// --- Component Imports ---
+import Footer from '../components/Footer';
+
+
 // --- Asset Imports ---
-// Rutas a tus imágenes locales en la carpeta 'assets'.
 import heroImage from '../assets/hero-music.jpg';
 import coursePiano from '../assets/course-piano.jpg';
 import courseGuitar from '../assets/course-guitar.jpg';
 import courseProduction from '../assets/course-production.jpg';
-import Footer from '@/components/Footer';
 
-// --- Componentes Internos ---
-
+// --- Componentes Internos (Se mantienen aquí por ahora) ---
 const Button = ({ children, size = 'md', variant = 'default', className = '', ...props }) => {
   const sizeClasses = {
     lg: 'px-8 py-4 text-lg',
@@ -59,21 +61,28 @@ const Navbar = () => {
   );
 };
 
+// CourseCard AHORA genera un slug para el enlace
+const CourseCard = ({ title, instructor, price, image, category }) => {
+    // Genera un 'slug' simple a partir del título para la URL
+    const slug = title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 
-const CourseCard = ({ title, instructor, price, image, category }) => (
-    <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 group transition-all duration-300 hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2">
-        <div className="overflow-hidden h-48"><img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" /></div>
-        <div className="p-6">
-            <span className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-2 inline-block">{category}</span>
-            <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-            <p className="text-gray-400 mb-4">Por {instructor}</p>
-            <div className="flex justify-between items-center">
-                <span className="text-2xl font-bold text-white">{price}</span>
-                <Link to="/curso/ejemplo"><Button size="sm" variant="secondary">Ver Curso</Button></Link>
+    return (
+        <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 group transition-all duration-300 hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2">
+            <div className="overflow-hidden h-48"><img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" /></div>
+            <div className="p-6">
+                <span className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-2 inline-block">{category}</span>
+                <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+                <p className="text-gray-400 mb-4">Por {instructor}</p>
+                <div className="flex justify-between items-center">
+                    <span className="text-2xl font-bold text-white">{price}</span>
+                    {/* Enlace actualizado para usar el slug */}
+                    <Link to={`/curso/${slug}`}><Button size="sm" variant="secondary">Ver Curso</Button></Link>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
+
 
 const SubscriptionPlans = () => {
     const iconMapSubs = { Music, Crown, Star };
@@ -158,14 +167,15 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }) => {
 };
 
 // --- Componente Principal de la Página ---
-export default function App() {
+export default function LandingPage() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const YOUTUBE_VIDEO_ID = "_BKzVp6H250";
 
+  // Datos para los cursos destacados - Asegúrate de que los títulos coincidan con los slugs esperados
   const featuredCourses = [
     { title: "Fundamentos de Piano Clásico", instructor: "María González", price: "$49", image: coursePiano, category: "Piano" },
     { title: "Guitarra para Principiantes", instructor: "Carlos Ramírez", price: "$39", image: courseGuitar, category: "Guitarra" },
-    { title: "Producción Musical Moderna", instructor: "Ana Torres", price: "$59", image: courseProduction, category: "Producción" },
+    { title: "Producción Musical Moderna con Ableton Live", instructor: "Ana Torres", price: "$59", image: courseProduction, category: "Producción" }, // Título coincide con courseData
   ];
 
   const stats = [
@@ -214,6 +224,7 @@ export default function App() {
       <section id="courses" className="py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16"><h2 className="font-bold text-4xl md:text-5xl mb-4 tracking-tight">Cursos Destacados</h2><p className="text-lg text-gray-400 max-w-2xl mx-auto">Explora nuestros cursos más populares y comienza tu viaje musical hoy.</p></div>
+          {/* AHORA CourseCard se renderiza aquí */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">{featuredCourses.map((course, index) => <CourseCard key={index} {...course} />)}</div>
           <div className="text-center"><Link to="/cursos"><Button size="lg" variant="outline">Ver Todos los Cursos <ArrowRight className="ml-2 w-5 h-5" /></Button></Link></div>
         </div>
@@ -247,6 +258,7 @@ export default function App() {
         </div>
       </section>
 
+      {/* Se llama al componente Footer importado */}
       <Footer />
 
       <VideoPlayerModal isOpen={showVideoModal} onClose={() => setShowVideoModal(false)} videoId={YOUTUBE_VIDEO_ID} />
